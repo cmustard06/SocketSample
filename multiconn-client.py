@@ -29,6 +29,8 @@ def start_connections(host, port, num_conns):
         events = select.select(timeout=5)
         for key, mask in events:
             service_connection(key, mask)
+        if not select.get_map():
+            break
 
 
 def service_connection(key, mask):
